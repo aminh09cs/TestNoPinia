@@ -14,7 +14,6 @@ import { defineProps, inject } from 'vue';
 const props = defineProps([
   "task"
 ])
-console.log(props.task)
 
 const tasks = inject('tasks')
 const delTasks = inject('delTasks');
@@ -35,6 +34,21 @@ const onCompleted = () => {
 
   .task-item-right-icon {
     cursor: pointer;
+
+    &:hover {
+      animation: rotation 0.2s infinite alternate;
+    }
+  }
+}
+
+//keyframe
+@keyframes rotation {
+  from {
+    transform: rotate(-20deg);
+  }
+
+  to {
+    transform: rotate(20deg);
   }
 }
 </style>

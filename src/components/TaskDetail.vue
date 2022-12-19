@@ -4,11 +4,12 @@
     <div v-for="task in tasksNotCompleted" :key="task.id">
       <TaskNotCompleted :task="task" />
     </div>
+    <div class="working" v-if="tasksNotCompleted.length === 0">All has completed</div>
     <h1 class="task-title">COMPLETED</h1>
     <div v-for="task in tasksCompleted" :key="task.id">
       <TaskCompleted :task="task" />
     </div>
-
+    <div class="working" v-if="tasksCompleted.length === 0">Nothing is completed</div>
   </section>
 </template>
 <script setup>
@@ -22,21 +23,6 @@ const props = defineProps([
   "tasksCompleted"
 ])
 
-//ref
-// const tasksCompleted = ref([]);
-// const tasksNotCompleted = ref([]);
-// tasksCompleted.value = props.tasks.filter(task => task.isCompleted === true);
-// tasksNotCompleted.value = props.tasks.filter(task => task.isCompleted === false);
-
-// watch(() => {
-//   props.tasks,
-//     () => {
-//       tasksCompleted.value = props.tasks.filter(task => task.isCompleted === true);
-//       tasksNotCompleted.value = props.tasks.filter(task => task.isCompleted === false);
-//     }
-// })
-
-
 </script>
 <style lang="scss" scoped>
 .task-container-detail {
@@ -49,5 +35,16 @@ const props = defineProps([
     font-weight: 700;
     padding: 30px 0;
   }
+}
+
+.working {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(88, 88, 88, 0.2);
+  height: 100px;
+  font-size: 30px;
+  border-radius: 20px;
 }
 </style>
