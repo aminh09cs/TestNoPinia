@@ -1,6 +1,6 @@
 <template>
   <div class="task-item-right">
-    <span class="task-item-right-icon trash" @click="onRemove">
+    <span class="task-item-right-icon trash" @click="delTasks(props.task.id)">
       <font-awesome-icon icon="fa-solid fa-trash" />
     </span>
     <span class="task-item-right-icon" @click="onCompleted">
@@ -14,8 +14,10 @@ import { defineProps, inject } from 'vue';
 const props = defineProps([
   "task"
 ])
+console.log(props.task)
 
-const tasks = inject('tasks');
+const tasks = inject('tasks')
+const delTasks = inject('delTasks');
 //emit 
 const onCompleted = () => {
   tasks.value.forEach((task) => {
@@ -24,17 +26,7 @@ const onCompleted = () => {
     }
   })
 }
-const onRemove = () => {
-  // tasks.value.forEach(task => {
-  //   if (task.id === props.task.id) {
-  //     console.log(task.id, props.task.id);
-  //   }
-  // });
-  const id = props.task.id;
-  console.log(tasks.value);
-  tasks.value.filter(task => task.id !== id)
-  console.log(tasks.value);
-}
+
 </script>
 <style lang="scss" scoped>
 .task-item-right {

@@ -27,7 +27,14 @@ const tasksNotCompleted = computed(() => {
   return tasks.value.filter(task => task.isCompleted === false);
 })
 
+const delTasks = (id) => {
+  const newDatas = tasks.value.filter(task => task.id !== id)
+  tasks.value = newDatas;
+  console.log(tasks.value);
+}
 provide('tasks', tasks);
+provide('delTasks', delTasks);
+
 const addNewTask = (data) => {
   tasks.value.push(data);
 }
